@@ -56,7 +56,6 @@ class LetterController extends Controller
             $letter->title = $request['title'];
             $letter->body = $request['body'];
             
-
             if ($image) {
                 $path = $image->store('/public/images');
                 // 画像の名前だけ保存
@@ -64,9 +63,6 @@ class LetterController extends Controller
             } else {
                 $path = null;
             }
-            $letter->image = $path;
-            $letter->save();
-            
             $letter->image = $path;
             $letter->save();
 
@@ -97,7 +93,7 @@ class LetterController extends Controller
     }
 
     //編集ボタン押したとき
-    public function letter_update(Request $request) 
+    public function letter_update(LetterRequest $request) 
     {
         $updateTable = new Letter;
         $updateLetter = $updateTable->letterUpdate($request);

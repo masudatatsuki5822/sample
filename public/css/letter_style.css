@@ -10,9 +10,8 @@ h1,h2,h3{
     flex-direction: column-reverse;
 }
 table {
-    margin: 0 auto;
+    margin: 3% auto;
     width: 50%;
-    margin-top: 3%;
 }
 /* table th,td {
     border: 1px solid white;
@@ -25,6 +24,9 @@ input ,textarea {
 }
 .text_danger {
     color: red;
+}
+img {
+    width: 400px;
 }
 a {
     margin: auto;
@@ -94,5 +96,14 @@ textarea {
 .delete {
     background-color: #ec6666;
     color: #dee4e2;
+    border: none;
+}
+.back {
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color:#668cec;
+    color: #dee4e2;
+    border-radius: 70px;
     border: none;
 }

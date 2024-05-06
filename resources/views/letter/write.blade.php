@@ -10,7 +10,7 @@
 
 <body>
 <div class="letter_box">
-    <h1>保育園 お便り投稿</h1>
+    <h1>{{ $nursery[0]->name }} お便り投稿</h1>
 
     <form action="{{ route('letter_write') }}" method="POST" enctype="multipart/form-data" onsubmit="return subForm()">
     @csrf

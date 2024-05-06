@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('/css/nursery_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/nursery_register_style.css') }}">
     <title>保育園 クラス登録</title>
 </head>
 <body>
-<h1>保育園 クラス登録</h1>
+<h1>{{ $nursery[0]->name }} クラス登録</h1>
 
 
-登録するクラスの詳細をご記入ください。
+<p1>登録するクラスの詳細をご記入ください。</p1>
 <div class='container'>
     <table>
         <form method="POST" action="{{ route('class_add') }}">

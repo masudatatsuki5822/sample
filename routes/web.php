@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NurseryController;
-use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LetterController;
 
 /*
@@ -41,8 +41,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 //生徒側
 Route::group(['middleware' => 'can:student'], function () {
-
-
+    //連絡帳投稿画面表示
+    Route::get('/contact/write',[ContactController::class,'contact_write'])->name('contact_write');
+    //連絡帳投稿
+    Route::post('/contact/send',[ContactController::class,'contact_send'])->name('contact_send');
+    //連絡帳表示
+    Route::get('/contact/show',[ContactController::class,'contact_show'])->name('contact_show');
 });
 
 //保育園側
@@ -74,6 +78,15 @@ Route::group(['middleware' => 'can:nursery'], function () {
     Route::post('/letter/update',[LetterController::class,'letter_update'])->name('letter_update');
     //お便り削除ボタン押したとき
     Route::post('/letter/delete/{id}',[LetterController::class,'letter_delete'])->name('letter_delete');
+
+    //連絡帳クラス選択表示
+    Route::get('/contact/class/show',[ContactController::class,'contact_classShow'])->name('contact_classShow');
+    //選択したクラスの生徒を取得
+    Route::post('/contact/student/select',[ContactController::class,'contact_student_select'])->name('contact_student_select');
+    //選択したクラスの生徒を表示
+    Route::get('/contact/student',[ContactController::class,'contact_student'])->name('contact_student');
+    //選択した生徒の連絡帳表示
+    Route::get('/contact/show/{id}',[ContactController::class,'contact_show'])->name('contact_show');
 });
 
 //管理者側

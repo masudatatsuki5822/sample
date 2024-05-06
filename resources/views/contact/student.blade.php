@@ -9,21 +9,26 @@
 </head>
 <body>
 <h1>{{ $nursery[0]->name }} 生徒一覧</h1>
+<h2>
+    {{ $students[0] ->years}}歳児
+    {{ $students[0] ->className}}クラス
+</h2>
 
 <table class='all'>
     <tr>
-        <th>学年</th>
-        <th>クラス名</th>
         <th>生徒名</th>
+        <th></th>
     </tr>
 
     @foreach($students as $student)
     <tr>
-        <td>{{ $student->years }}歳児</td>
-        <td>{{ $student->classname }}</td>
-        <td>{{ $student->studentname }}さん</td>
+        <td>{{ $student->studentName }}さん</td>
+        <td><button class="detail"onclick="location.href='/contact/show/{{ $student->id }}'">お便りを確認</button></td>
     </tr>
     @endforeach
+
+
+
 </table>
 
 

@@ -71,7 +71,7 @@ class Letter extends Model
             \DB::commit();
         } catch(\Throwable $e) {
             \DB::rollBack();
-            dd($e->getMessage());
+            //dd($e->getMessage());
         }
     }
 }

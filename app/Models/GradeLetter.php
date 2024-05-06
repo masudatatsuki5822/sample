@@ -29,8 +29,11 @@ class GradeLetter extends Model
         //クラス名をグループ化し文字列として連結
         DB::raw('GROUP_CONCAT(grades.name SEPARATOR ",") AS names'))
         ->groupBy('letters.id')
+        ->orderBy('letters.created_at','desc')
         ->orderBy('names')
         ->get();
+
+
 
         return $allLetter;
     }

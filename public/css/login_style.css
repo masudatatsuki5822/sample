@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(110deg, #cfdffa, #dee4e2); 
+    background: linear-gradient(110deg, #beeead, #f2f3f3); 
 }
 .container {
     width: 100%;
@@ -44,7 +44,7 @@ input {
 }
 .login {
     width: 300px;
-    background-color: lightgreen;
+    background-color: rgb(144, 202, 238);
     color: white;
     margin: 3% auto;
     border: none;

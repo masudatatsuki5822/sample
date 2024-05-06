@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/css/letter_style.css') }}">
-    <title>保育園 お便り編集</title>
+    <title>お便り編集</title>
 </head>
 
 <body>
 <div class="letter_box">
-    <h1>保育園 お便り編集</h1>
+    <h1>{{ $nursery[0]->name }} お便り編集</h1>
 
     <form action="{{ route('letter_update') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -78,7 +78,7 @@
                     </div>
                     @endif
                     <input type="file" name="image" class="title">
-                    <img src="{{ asset('/storage/images/' . $one_letter->image) }}"  width="300px">
+
                 </td>
 
 

@@ -43,7 +43,7 @@ class Grade extends Model
         $user = \Auth::user();
         $nursery_id = $user->nursery_id;
 
-        $classes = Grade::select('id','name')
+        $classes = Grade::select('id','name','years','teacher')
         ->where('nursery_id', '=', $nursery_id)
         ->get();
         //dd($classes);

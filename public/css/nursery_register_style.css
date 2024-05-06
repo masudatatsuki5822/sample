@@ -10,16 +10,16 @@ h1,h2,h3{
     flex-direction: column-reverse;
 }
 table {
-    margin: 0 auto;
-    width: 50%;
+    margin: auto;
     margin-top: 3%;
 }
 table th,td {
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 th {
     text-align: left;
 }
+
 .text_danger {
     color: red;
 }
@@ -84,7 +84,7 @@ a {
 }
 .add {
     width: 200px;
-    margin: 1% auto 1;
+    margin: 2% auto 2%;
     padding: 10px;
     background-color:#ec6666;
     color: #dee4e2;
@@ -103,4 +103,13 @@ a {
 a {
     margin: auto;
     margin-top: 3%;
+}
+.show {
+    width: 200px;
+    margin: 2% auto;
+    padding: 10px;
+    background-color:#ec6666;
+    color: #dee4e2;
+    border-radius: 70px;
+    border: none;
 }

@@ -15,10 +15,10 @@ class NurseryController extends Controller
     public function index() 
     {
         $nurseryTable = new Nursery;
-        $nursery_name = $nurseryTable->nurseryName();
+        $nursery = $nurseryTable->nurseryName();
         //dd($nursery_name);
 
-        return view('nursery/index',['nursery_name' => $nursery_name]);
+        return view('nursery/index',['nursery' => $nursery]);
     }
 
     //クラス一覧表示
