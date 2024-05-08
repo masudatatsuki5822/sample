@@ -12,22 +12,28 @@
 @can('nursery')
 <div class='text'>
     <h1>{{ $nursery[0]->name }}</h1>
-    <h2>{{ $contacts->name }}さん 連絡帳確認</h2>
+    
 </div>
 <div class="letter_box">
-    <table class="one_contact">
+<table class="one_contact">
+    
         <tr>
             <th>今日の日付</th>
         </tr>
         <tr>
+            @foreach($todayList as $today)
             <td>{{ $today }}</td>
+            @endforeach
         </tr>
         <tr>
             <th>お迎え時刻</th>
         </tr>
         <tr>
+            @foreach($back_timeList as $back_time)
             <td>{{ $back_time }}</td>
+            @endforeach
         </tr>
+        @foreach($contacts_all as $contacts)
         <tr>
             <th>お迎えする方</th>
         </tr>
@@ -46,15 +52,18 @@
         <tr>
             <td>{{ $contacts->breakfast }}</td>
         </tr>
-        @if($contacts->comment)
+        
         <tr>
             <th>コメント</th>
         </tr>
         <tr>
             <td>{{ $contacts->comment}}</td>
         </tr>
-        @endif
+        
+    @endforeach
     </table>
+
+
     <div class='registerBox'>
         <input class="back "type="button" onclick="window.history.back();" value="クラスの生徒一覧にもどる">
         <a href="{{ route ('index')}}">保育園マイページへ戻る</a>
@@ -68,7 +77,7 @@
 </div>
 <div class="letter_box">
     <table class="one_contact">
-
+    
         <tr>
             <th>今日の日付</th>
         </tr>

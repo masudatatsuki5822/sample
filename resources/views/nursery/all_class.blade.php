@@ -8,7 +8,11 @@
     <title>保育園 クラス一覧</title>
 </head>
 <body>
-<h1>{{ $nursery[0]->name }} クラス一覧</h1>
+
+<div class="text">
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>クラス一覧</h2>
+</div>
 
 <table class='all'>
     <tr>
@@ -23,7 +27,6 @@
         <td>{{ $grade->teacher }}先生</td>
     </tr>
     @endforeach
-
 </table>
 
 <div class="registerBox">

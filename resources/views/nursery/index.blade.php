@@ -8,8 +8,30 @@
     <title>マイページ</title>
 </head>
 <body>
+@if(\Gate::allows('admin'))
+<h1>システム管理者  マイページ</h1>
 
-@can('nursery')
+<div class='mypage'>
+    <div class='contents'>
+        <div class='titleBox'>
+            <h3>ユーザー一覧をみる</h3>
+        </div>
+        <div class='buttonBox'>
+            <button  class="my_list" onclick="location.href='{{ route('user_show')}} '">確認</button>
+        </div>
+    </div>
+</div>
+
+<div class="logout">
+    <form method ="POST" action="{{ route('logout') }}">
+        @csrf
+        <button class='logout'>ログアウト</button>
+    </form>
+</div>
+
+
+@elseif(\Gate::allows('nursery'))
+
 <h1>{{ $nursery[0]->name }} マイページ</h1>
 
 <div class='mypage'>
@@ -58,8 +80,8 @@
 </div>
 
 
-@elseif('student')
-<h1>生徒 マイページ</h1>
+@else('student')
+<h1>生徒 {{ $studentName[0]->name }}さん  マイページ</h1>
 
 <div class='mypage'>
     <div class='contents'>
@@ -76,7 +98,7 @@
             <h3>連絡帳</h3>
         </div>
         <div class='buttonBox'>
-            <button class="my_list" onclick="location.href=''">連絡帳を読む</button>
+            <button class="my_list" onclick="location.href='{{ route('contact_show_one')}}'">連絡帳を読む</button>
             <button class="my_add" onclick="location.href='{{ route('contact_write')}}'">連絡帳を記入する</button>
         </div>
     </div>
@@ -88,7 +110,7 @@
         <button class='logout'>ログアウト</button>
     </form>
 </div>
-@endif
 
+@endif
 </body>
 </html>

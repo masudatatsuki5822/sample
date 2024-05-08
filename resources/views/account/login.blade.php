@@ -47,7 +47,7 @@
                 </tr>
                 <div class="button_box">
                     <button type="submit" class="login">ログイン</button>
-                    <a href="{{ route('signup')}}">新規登録はこちら</a>
+                    <a href="{{ route('signup')}}">保育園 新規登録はこちら</a>
                 </div>
             </form>
         </table>

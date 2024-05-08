@@ -67,6 +67,38 @@ class User extends Authenticatable
     }
 
 
+    // 生徒名取得
+    public function getStudentName() 
+    {
+        $user = \Auth::user();
+
+        // ユーザーがログインしてたら
+        if($user) {
+            $user_id = $user->id;
+
+            $studentName = User::select('users.name')
+            // ログイン中のユーザーIDに絞る
+            ->where('users.id', '=', $user_id)
+            //　生徒に絞る
+            ->where('users.role', '=', '2')
+            ->get();
+            return $studentName;
+        } else {
+            return[];
+        }
+    }
+
+    // 全ユーザーの保育園名と名前取得
+    public function getUser() 
+    {
+        $users = User::join('nurseries','users.nursery_id','=','nurseries.id')
+        ->select('users.id','nurseries.name AS nn','users.name AS un')
+        ->get();
+        
+        return $users;
+    }
+
+
 
 
 }

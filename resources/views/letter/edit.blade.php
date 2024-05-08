@@ -9,9 +9,13 @@
 </head>
 
 <body>
-<div class="letter_box">
-    <h1>{{ $nursery[0]->name }} お便り編集</h1>
 
+<div class="text">
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>お便り編集</h2>
+</div>
+
+<div class="letter_box">
     <form action="{{ route('letter_update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="letter_box">
@@ -78,10 +82,7 @@
                     </div>
                     @endif
                     <input type="file" name="image" class="title">
-
                 </td>
-
-
             </tr>
         </table>
 

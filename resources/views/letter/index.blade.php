@@ -10,9 +10,11 @@
 <body>
 
 @can('nursery')
+<div class="text">
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>お便り一覧</h2>
+</div>
 <div class="letter_box">
-    <h1>{{ $nursery[0]->name }} お便り一覧</h1>
-
     <table class='all'>
         <tr>
             <th>配信日</th>
@@ -44,9 +46,11 @@
 </div>
 
 @elseif('student')
-<div class="letter_box">
+<div class="text">
     <h1>生徒 お便り一覧</h1>
-
+    <h2>お便り一覧</h2>
+</div>
+<div class="letter_box">
     <table class='all'>
         <tr>
             <th>配信日</th>

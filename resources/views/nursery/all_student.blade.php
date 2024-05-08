@@ -8,7 +8,11 @@
     <title>保育園 生徒一覧</title>
 </head>
 <body>
-<h1>{{ $nursery[0]->name }} 生徒一覧</h1>
+
+<div class="text">
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>生徒一覧</h2>
+</div>
 
 <table class='all'>
     <tr>

@@ -27,17 +27,20 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/signup', [AuthController::class,'signup'])->name('signup');
     //新規登録で入力された値をUserテーブルに入れる
     Route::post('/register', [AuthController::class,'register'])->name('register');
-
 });
+
 //認証済み
 Route::group(['middleware' => ['auth']], function () {
+    //マイページ
+    Route::get('/index',[NurseryController::class,'index'])->name('index');
     //ログアウト押したとき
     Route::post('/logout', [AuthController::class,'logout'])->name('logout');
     //お便り一覧
     Route::get('/letter/all',[LetterController::class,'letter_show'])->name('letter_show');
-    //マイページ
-    Route::get('/index',[NurseryController::class,'index'])->name('index');
+    //お便り詳細表示
+    Route::get('/letter/all/{id}',[LetterController::class,'letter_detail'])->name('letter_detail');
 });
+
 
 //生徒側
 Route::group(['middleware' => 'can:student'], function () {
@@ -46,12 +49,13 @@ Route::group(['middleware' => 'can:student'], function () {
     //連絡帳投稿
     Route::post('/contact/send',[ContactController::class,'contact_send'])->name('contact_send');
     //連絡帳表示
-    Route::get('/contact/show',[ContactController::class,'contact_show'])->name('contact_show');
+    Route::get('/contact/show_one',[ContactController::class,'contact_show_one'])->name('contact_show_one');
+
 });
 
 //保育園側
 Route::group(['middleware' => 'can:nursery'], function () {
-    
+
     //クラス一覧画面表示
     Route::get('/class/all',[NurseryController::class,'class_show'])->name('class_show');
     //クラス新規登録画面表示
@@ -70,8 +74,6 @@ Route::group(['middleware' => 'can:nursery'], function () {
     Route::get('/letter/write',[LetterController::class,'letter_write_show'])->name('letter_write_show');
     //お便り投稿ボタン押したとき
     Route::post('/letter/write_done',[LetterController::class,'letter_write'])->name('letter_write');
-    //お便り詳細表示
-    Route::get('/letter/all/{id}',[LetterController::class,'letter_detail'])->name('letter_detail');
     //お便り編集画面表示
     Route::get('/letter/edit/{id}',[LetterController::class,'letter_edit'])->name('letter_edit');
     //お便り編集ボタン押したとき
@@ -85,14 +87,38 @@ Route::group(['middleware' => 'can:nursery'], function () {
     Route::post('/contact/student/select',[ContactController::class,'contact_student_select'])->name('contact_student_select');
     //選択したクラスの生徒を表示
     Route::get('/contact/student',[ContactController::class,'contact_student'])->name('contact_student');
-    //選択した生徒の連絡帳表示
+    // //選択した生徒の連絡帳表示
     Route::get('/contact/show/{id}',[ContactController::class,'contact_show'])->name('contact_show');
+    //選択した生徒の連絡帳表示
+    //Route::get('/contact/show/{id}',[ContactController::class,'contact_show_all'])->name('contact_show_all');
 });
 
-//管理者側
-// Route::group(['middleware' => 'can:admin'], function () {
 
-// });
+
+
+//管理者側
+Route::group(['middleware' => 'can:admin'], function () {
+    //ユーザー一覧を表示
+    Route::get('/user/all',[NurseryController::class,'user_show'])->name('user_show');
+    //ユーザー削除
+    Route::post('/user/delete/{id}',[NurseryController::class,'user_delete'])->name('user_delete');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

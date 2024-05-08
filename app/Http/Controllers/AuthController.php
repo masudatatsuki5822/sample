@@ -91,8 +91,9 @@ class AuthController extends Controller
     private function getRedirectRoute($role)
     {
         switch ($role) {
-            case '1':
-            case '2':
+            case '0': //システム管理者
+            case '1': //保育園
+            case '2': //保護者
                 return 'index'; // 保育園または生徒のマイページのルート
             default:
                 return 'login_show'; // その他はログインページ表示
