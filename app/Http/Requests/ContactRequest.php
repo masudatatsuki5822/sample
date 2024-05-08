@@ -24,6 +24,7 @@ class ContactRequest extends FormRequest
         return [
             //連絡帳投稿のバリデーション
             'back_time' => 'required',
+            'person' => 'required',
             'temp' => 'required',
             'breakfast' => 'required',
             'comment' => 'nullable',
@@ -33,6 +34,7 @@ class ContactRequest extends FormRequest
     {
         return[
             'back_time.required' => 'お迎え時刻は必須入力です。',
+            'person.required' => 'お迎えする方は必須入力です。',
             'temp.required' => '体温は必須入力です。',
             'breakfast.required' => '朝食は必須入力です。',
         ];

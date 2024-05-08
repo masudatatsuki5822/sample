@@ -1,5 +1,6 @@
 body {
-    background: linear-gradient(110deg, #beeead, #f2f3f3); 
+    background: linear-gradient(110deg, #beeead, #dee4e2); 
+    /* background:#beeead; */
 }
 .container {
     width: 100%;
@@ -16,6 +17,12 @@ img{
 .login_data {
     display: flex;
     flex-direction: column-reverse;
+}
+.text {
+    margin: 0 0 0 10%;
+}
+h1 {
+    color: #666666;
 }
 table {
     margin: 3% auto 0;

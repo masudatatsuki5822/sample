@@ -34,6 +34,7 @@ class ContactController extends Controller
             $contact->nursery_id = $nursery_id;
             $contact->class_id = $class_id;
             $contact->user_id = $user_id;
+            $contact->person = $request['person'];
             $contact->today = Carbon::createFromFormat('Y/m/d',$request['today']); 
             $contact->back_time = Carbon::createFromFormat('H:i',$request['back_time']);
             $contact->temp = $request['temp'];
@@ -85,5 +86,43 @@ class ContactController extends Controller
 
         return view('contact/read',['contacts' =>$contacts , 'today' =>$today ,'back_time' =>$back_time ]);
     }
+
+    // 生徒側から投稿した連絡帳を確認
+    public function contact_show_one() 
+    {
+        $contactsTable = new Contact;
+        $contact = $contactsTable->getOneContact();
+
+        // 日付と時刻を表示したいフォーマットに変換
+        $today = Carbon::createFromFormat('Y-m-d H:i:s', $contact->today)->format('Y/m/d');
+        $back_time = Carbon::createFromFormat('Y-m-d H:i:s', $contact->back_time)->format('H:i');
+
+        return view('contact/read',['contact' =>$contact , 'today' =>$today ,'back_time' =>$back_time ]);
+    }
+
+
+    // 生徒一覧から送られてきたuser_idと同じ連絡帳を取得する
+    // 全て遡って
+    public function contact_show_all($id)
+    {
+        $contactsTable = new Contact;
+        $contacts_all = $contactsTable->getContacts_all($id);
+        //dd($contacts_all);
+
+        // 日付と時刻を表示したいフォーマットに変換
+        // foreach($contacts_all as $contact) {
+        //     $todayList = Carbon::createFromFormat('Y-m-d H:i:s', $contact->today)->format('Y/m/d');
+        //     $back_timeList = Carbon::createFromFormat('Y-m-d H:i:s', $contact->back_time)->format('H:i');
+        // }
+
+        $todayList = Carbon::createFromFormat('Y-m-d H:i:s', $contacts_all->today)->format('Y/m/d');
+        $back_timeList = Carbon::createFromFormat('Y-m-d H:i:s', $contacts_all->back_time)->format('H:i');
+        dd($todayList);
+        return view('contact/read_all',['contacts_all' =>$contacts_all , 'todayList' =>$todayList ,'back_timeList' =>$back_timeList ]);
+    }
+
+
+
+
 
 }

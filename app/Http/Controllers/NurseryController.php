@@ -11,17 +11,36 @@ use App\Models\Nursery;
 
 class NurseryController extends Controller
 {
-    //保育園マイページ
+    // システム管理者 ユーザー一覧画面表示
+    public function user_show() 
+    {
+        $usersTable = new User;
+        $users = $usersTable->getUser();
+
+        return view('nursery/admin',['users' => $users]);
+    }
+
+    // ユーザー削除
+    public function user_delete($id)
+    {
+        $deleteUser = User::find($id);
+        $deleteUser->delete();
+        return redirect()->route('user_show');
+    }
+
+    // 保育園マイページ
     public function index() 
     {
+        // 保育園名を取得
         $nurseryTable = new Nursery;
         $nursery = $nurseryTable->nurseryName();
         //dd($nursery_name);
 
-        return view('nursery/index',['nursery' => $nursery]);
+        // return view('nursery/index',['nursery' => $nursery]);
+        return view('nursery/index');
     }
 
-    //クラス一覧表示
+    // クラス一覧表示
     public function class_show() 
     {
         $gradeTable = new Grade;
@@ -30,13 +49,13 @@ class NurseryController extends Controller
         return view('nursery/all_class', ['grades' => $grades]);
     }
 
-    //クラス登録画面表示
+    // クラス登録画面表示
     public function class_add_show() 
     {
         return view('nursery/class_add');
     }
 
-    //クラスの登録
+    // クラスの登録
     public function class_add(ClassNameRequest $request) 
     {
         \DB::beginTransaction();
@@ -59,7 +78,7 @@ class NurseryController extends Controller
         return redirect()->route('class_show');
     }
 
-    //生徒一覧表
+    // 生徒一覧表
     public function student_show()
     {
         $studentTable = new User;
@@ -69,7 +88,7 @@ class NurseryController extends Controller
         
     }
 
-    //生徒登録画面表示
+    // 生徒登録画面表示
     public function student_add_show()
     {
         $classesTable = new Grade;
@@ -77,7 +96,7 @@ class NurseryController extends Controller
         return view('nursery/student_add',['classes'=>$classes]);
     }
 
-    //生徒登録
+    // 生徒登録
     public function student_add(StudentRequest $request) 
     {
         \DB::beginTransaction();
@@ -102,4 +121,23 @@ class NurseryController extends Controller
         }
         return redirect()->route('student_show');
     }
+
+    // 生徒名取得
+    public function student_name() 
+    {
+        $studentNameTable = new User;
+        $student = $studentNameTable->getStudentName();
+        return view('nursery/index');
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

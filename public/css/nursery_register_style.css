@@ -9,6 +9,15 @@ h1,h2,h3{
     display: flex;
     flex-direction: column-reverse;
 }
+.text {
+    margin: 0 0 0 10%;
+}
+h2 {
+    margin-bottom: 0;
+}
+p {
+    margin-top: 0;
+}
 table {
     margin: auto;
     margin-top: 3%;
@@ -19,11 +28,19 @@ table th,td {
 th {
     text-align: left;
 }
-
+input select {
+    height: 25px;
+}
+select {
+    height: 20px;
+}
 .text_danger {
     color: red;
 }
-
+.class_id {
+    margin-top: 5%;
+    height: 30px;
+}
 a {
     margin: auto;
     margin-top: 3%;

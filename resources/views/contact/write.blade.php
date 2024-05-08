@@ -9,9 +9,13 @@
 </head>
 
 <body>
-<div class="letter_box">
-    <h1>{{ $nursery[0]->name }}生徒 連絡帳投稿</h1>
 
+<div class="text">
+    <h1>生徒{{ $studentName[0]->name }}さん</h1> 
+    <h2>連絡帳投稿</h2> 
+</div>
+
+<div class="letter_box">
     <form action="{{ route('contact_send') }}" method="POST" enctype="multipart/form-data" onsubmit="return subForm()">
     @csrf
         <table class="contents">
@@ -34,7 +38,19 @@
                     @endif
                     <label for="date" class="col-form-label">時刻を入力</label>
                     <input type="time" class="form-control" name="back_time">
-
+                </td>
+            </tr>
+            <tr>
+                <th>お迎えする方</th>
+            </tr>
+            <tr>
+                <td>
+                    @if ($errors->has('person'))
+                    <div class="text_danger">
+                        {{$errors->first('person')}}
+                    </div>
+                    @endif
+                    <input name="person" class="title" placeholder="お迎えする方">
                 </td>
             </tr>
             <tr>

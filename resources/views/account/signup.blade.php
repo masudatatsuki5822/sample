@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="{{ asset('/css/login_style.css') }}">
 </head>
 <body>
-<h2>保育園 新規登録画面</h2>
+
+<div class="text">
+    <h1>保育園 新規登録画面</h1>
+</div>
+
 
 <div class='login_data'>
     <table>

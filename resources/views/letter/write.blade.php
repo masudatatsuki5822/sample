@@ -9,9 +9,12 @@
 </head>
 
 <body>
-<div class="letter_box">
-    <h1>{{ $nursery[0]->name }} お便り投稿</h1>
 
+<div class="text">
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>お便り投稿</h2>
+</div>
+<div class="letter_box">
     <form action="{{ route('letter_write') }}" method="POST" enctype="multipart/form-data" onsubmit="return subForm()">
     @csrf
         <table class="contents">

@@ -8,10 +8,11 @@
     <title>保育園 クラス登録</title>
 </head>
 <body>
-<h1>{{ $nursery[0]->name }} クラス登録</h1>
-
-
-<p1>登録するクラスの詳細をご記入ください。</p1>
+<div class="text">
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>クラス登録</h2>
+    <p>登録するクラスの詳細をご記入ください。</p>
+</div>
 <div class='container'>
     <table>
         <form method="POST" action="{{ route('class_add') }}">

@@ -8,9 +8,10 @@
     <title>保育園 連絡帳 クラス選択</title>
 </head>
 <body>
-<h1>{{ $nursery[0]->name }} 連絡帳 クラス選択</h1>
 
 <div class='text'>
+    <h1>{{ $nursery[0]->name }}</h1>
+    <h2>連絡帳 クラス選択</h2>
     <p>連絡帳を確認するクラスを選択してください。</p>
 </div>
 
@@ -23,9 +24,9 @@
     @csrf
     <tr>
         <td>
-            <select name='class_id'>
+            <select class='class_id' name='class_id'>
                 @foreach($classes as $class)
-                <option value="{{ $class->id }}" id="class_id">{{ $class->name }}組　{{ $class->years }}歳児　{{ $class->teacher }}先生</option>
+                <option class='class_id' value="{{ $class->id }}">{{ $class->name }}組　{{ $class->years }}歳児　{{ $class->teacher }}先生</option>
                 @endforeach
             </select>
         </td>

@@ -8,11 +8,15 @@
     <title>保育園 生徒一覧</title>
 </head>
 <body>
-<h1>{{ $nursery[0]->name }} 生徒一覧</h1>
-<h2>
-    {{ $students[0] ->years}}歳児
-    {{ $students[0] ->className}}クラス
-</h2>
+
+<div class="text">
+    <h1>{{ $nursery[0]->name }} 生徒一覧</h1>
+    <h2>
+        {{ $students[0] ->years}}歳児
+        {{ $students[0] ->className}}クラス
+    </h2>
+</div>
+
 
 <table class='all'>
     <tr>
@@ -23,7 +27,7 @@
     @foreach($students as $student)
     <tr>
         <td>{{ $student->studentName }}さん</td>
-        <td><button class="detail"onclick="location.href='/contact/show/{{ $student->id }}'">お便りを確認</button></td>
+        <td><button class="detail"onclick="location.href='/contact/show/{{ $student->id }}'">連絡帳を確認</button></td>
     </tr>
     @endforeach
 
