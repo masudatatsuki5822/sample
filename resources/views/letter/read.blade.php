@@ -14,6 +14,7 @@
     <h1>{{ $nursery[0]->name }}</h1>
     <h2>お便りを見る</h2>
 </div>
+
 <div class="letter_box">
     <table class="contents">
         <tr>

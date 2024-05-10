@@ -75,6 +75,7 @@ class LetterController extends Controller
             \DB::rollBack();
             //dd($e->getMessage());
         }
+        session()->flash('success', 'お便りを投稿しました。');
         return redirect()->route('letter_show');
     }
 

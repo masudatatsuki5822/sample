@@ -12,28 +12,33 @@
 @can('nursery')
 <div class='text'>
     <h1>{{ $nursery[0]->name }}</h1>
-    
+@if(isset($message))
+    <p>{{ $message }}</p>
+@else
+    <h2>{{ $contacts_all[0]->name }}さん 連絡帳確認</h2>
 </div>
 <div class="letter_box">
+
+@foreach($contacts_all as $contacts)
 <table class="one_contact">
-    
         <tr>
             <th>今日の日付</th>
         </tr>
         <tr>
-            @foreach($todayList as $today)
-            <td>{{ $today }}</td>
-            @endforeach
+
+            <td>{{\Carbon\Carbon::parse($contacts->today)->format("Y年m月d日")}}</td>
+            
+
         </tr>
         <tr>
             <th>お迎え時刻</th>
         </tr>
         <tr>
-            @foreach($back_timeList as $back_time)
-            <td>{{ $back_time }}</td>
-            @endforeach
+
+            <td>{{\Carbon\Carbon::parse($contacts->back_time)->format("H時i分")}}</td>
+
         </tr>
-        @foreach($contacts_all as $contacts)
+        
         <tr>
             <th>お迎えする方</th>
         </tr>
@@ -59,11 +64,9 @@
         <tr>
             <td>{{ $contacts->comment}}</td>
         </tr>
-        
-    @endforeach
     </table>
-
-
+@endforeach
+@endif
     <div class='registerBox'>
         <input class="back "type="button" onclick="window.history.back();" value="クラスの生徒一覧にもどる">
         <a href="{{ route ('index')}}">保育園マイページへ戻る</a>
@@ -74,51 +77,58 @@
 <div class="text">
     <h1>生徒 {{ $studentName[0]->name }}さん</h1> 
     <h2>連絡帳確認</h2>
+@if(isset($message))
+        <p>{{ $message }}</p>
+@else
 </div>
 <div class="letter_box">
+    @foreach($contact as $before_contact)
     <table class="one_contact">
     
         <tr>
-            <th>今日の日付</th>
+            <th>日付</th>
         </tr>
         <tr>
-            <td>{{ $today }}</td>
+            <td>{{\Carbon\Carbon::parse($before_contact->today)->format("Y年m月d日")}}</td>
         </tr>
         <tr>
             <th>お迎え時刻</th>
         </tr>
         <tr>
-            <td>{{ $back_time }}</td>
+            <td>{{\Carbon\Carbon::parse($before_contact->back_time)->format("H時i分")}}</td>
         </tr>
         <tr>
             <th>お迎えする方</th>
         </tr>
         <tr>
-            <td>{{ $contact->person }}</td>
+            <td>{{ $before_contact->person }}</td>
         </tr>
         <tr>
             <th>体温</th>
         </tr>
         <tr>
-            <td>{{ $contact->temp }}</td>
+            <td>{{ $before_contact->temp }}</td>
         </tr>
         <tr>
             <th>朝食内容</th>
         </tr>
         <tr>
-            <td>{{ $contact->breakfast }}</td>
+            <td>{{ $before_contact->breakfast }}</td>
         </tr>
-        @if($contact->comment)
+        @if($before_contact->comment)
         <tr>
             <th>コメント</th>
         </tr>
         <tr>
-            <td>{{ $contact->comment}}</td>
+            <td>{{ $before_contact->comment}}</td>
         </tr>
         @endif
     </table>
+    @endforeach
+@endif
+
     <div class='registerBox'>
-        <a href="{{ route ('index')}}">生徒マイページへ戻る</a>
+        <a href="{{ route ('index')}}">マイページへ戻る</a>
     </div>
 </div>
 @endif

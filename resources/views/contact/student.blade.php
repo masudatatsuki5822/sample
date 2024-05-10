@@ -22,12 +22,14 @@
     <tr>
         <th>生徒名</th>
         <th></th>
+        <th></th>
     </tr>
 
     @foreach($students as $student)
     <tr>
         <td>{{ $student->studentName }}さん</td>
         <td><button class="detail"onclick="location.href='/contact/show/{{ $student->id }}'">連絡帳を確認</button></td>
+        <td><button class="before"onclick="location.href='/contact/show/before/{{ $student->id }}'">過去の分を確認</button></td>
     </tr>
     @endforeach
 

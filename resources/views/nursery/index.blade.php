@@ -81,8 +81,13 @@
 
 
 @else('student')
-<h1>生徒 {{ $studentName[0]->name }}さん  マイページ</h1>
-
+<h1>生徒 マイページ</h1>
+<h2>{{ $studentName[0]->name }}さん</h2>
+@if(session('success'))
+    <div class="alert">
+        <p class="session">{{ session('success') }}</p>
+    </div>
+@endif
 <div class='mypage'>
     <div class='contents'>
         <div class='titleBox'>
@@ -99,6 +104,7 @@
         </div>
         <div class='buttonBox'>
             <button class="my_list" onclick="location.href='{{ route('contact_show_one')}}'">連絡帳を読む</button>
+            <button class="my_read" onclick="location.href='{{ route('contact_show_before')}}'">過去の連絡帳を読む</button>
             <button class="my_add" onclick="location.href='{{ route('contact_write')}}'">連絡帳を記入する</button>
         </div>
     </div>

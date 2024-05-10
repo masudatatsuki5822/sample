@@ -75,6 +75,7 @@ class NurseryController extends Controller
             \DB::rollBack();
             //dd($e->getMessage());
         }
+        session()->flash('success', 'クラスの登録ができました。');
         return redirect()->route('class_show');
     }
 
@@ -119,6 +120,7 @@ class NurseryController extends Controller
             \DB::rollBack();
             //dd($e->getMessage());
         }
+        session()->flash('success', '生徒の登録ができました。');
         return redirect()->route('student_show');
     }
 

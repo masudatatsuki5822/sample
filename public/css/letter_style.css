@@ -69,6 +69,7 @@ a {
     margin-left: auto;
     background-color: #e3f0eb;
     border-radius: 30px;
+    gap: 15px;
 }
 tbody {
     margin: auto;
@@ -121,4 +122,19 @@ textarea {
     color: #dee4e2;
     border-radius: 70px;
     border: none;
+}
+.confirm {
+    width: 200px;
+    margin: 0 auto 30px;
+    padding: 10px;
+    background-color:#cbcd4d;
+    color: #dee4e2;
+    border-radius: 70px;
+    border: none;
+}
+.alert {
+    margin: auto;
+}
+.session {
+    color: #ec6666;
 }

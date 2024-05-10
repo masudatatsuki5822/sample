@@ -12,6 +12,11 @@
 <div class="text">
     <h1>{{ $nursery[0]->name }}</h1>
     <h2>クラス一覧</h2>
+    @if(session('success'))
+    <div class="alert">
+        <p class="session">{{ session('success') }}</p>
+    </div>
+    @endif
 </div>
 
 <table class='all'>

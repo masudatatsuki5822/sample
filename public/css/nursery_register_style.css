@@ -130,3 +130,9 @@ a {
     border-radius: 70px;
     border: none;
 }
+.alert {
+    margin: auto;
+}
+.session {
+    color: #ec6666;
+}

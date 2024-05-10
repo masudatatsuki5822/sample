@@ -86,6 +86,14 @@ a {
     border-radius: 70px;
     border: none;
 }
+.my_read {
+    width: 500px;
+    padding: 3%;
+    background-color:#94a106e9;
+    color: #dee4e2;
+    border-radius: 70px;
+    border: none;
+}
 .logout {
     width: 200px;
     margin: 3% 0 0 auto;
@@ -134,4 +142,15 @@ a {
     background-color: #ec6666;
     color: #dee4e2;
     border: none;
+}
+.before {
+    background-color: rgb(70, 37, 154);
+    color: #dee4e2;
+    border: none;
+}
+.alert {
+    margin: auto;
+}
+.session {
+    color: #ec6666;
 }

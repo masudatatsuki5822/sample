@@ -50,7 +50,8 @@ Route::group(['middleware' => 'can:student'], function () {
     Route::post('/contact/send',[ContactController::class,'contact_send'])->name('contact_send');
     //連絡帳表示
     Route::get('/contact/show_one',[ContactController::class,'contact_show_one'])->name('contact_show_one');
-
+    //連絡帳表示
+    Route::get('/contact/show_one/before',[ContactController::class,'contact_show_before'])->name('contact_show_before');
 });
 
 //保育園側
@@ -90,10 +91,8 @@ Route::group(['middleware' => 'can:nursery'], function () {
     // //選択した生徒の連絡帳表示
     Route::get('/contact/show/{id}',[ContactController::class,'contact_show'])->name('contact_show');
     //選択した生徒の連絡帳表示
-    //Route::get('/contact/show/{id}',[ContactController::class,'contact_show_all'])->name('contact_show_all');
+    Route::get('/contact/show/before/{id}',[ContactController::class,'contact_show_all'])->name('contact_show_all');
 });
-
-
 
 
 //管理者側

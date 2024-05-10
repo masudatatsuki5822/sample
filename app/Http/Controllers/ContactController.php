@@ -47,6 +47,7 @@ class ContactController extends Controller
             \DB::rollBack();
             //dd($e->getMessage());
         }
+        session()->flash('success', '連絡帳を投稿しました。');
         return redirect()->route('index');
     }
     // 連絡帳のクラスを選択画面表示
@@ -68,6 +69,7 @@ class ContactController extends Controller
         $students = User::join('grades','users.class_id','=','grades.id')
         ->where('class_id',$classId)
         ->select('users.id','users.name AS studentName','grades.name AS className','grades.years')
+        ->orderBy('users.name')
         ->get();
         //dd($students);
         return view('contact/student',['students'=> $students]);
@@ -80,11 +82,17 @@ class ContactController extends Controller
         $contactsTable = new Contact;
         $contacts = $contactsTable->getContacts($id);
 
+        if($contacts) {
         // 日付と時刻を表示したいフォーマットに変換
-        $today = Carbon::createFromFormat('Y-m-d H:i:s', $contacts->today)->format('Y/m/d');
-        $back_time = Carbon::createFromFormat('Y-m-d H:i:s', $contacts->back_time)->format('H:i');
+            $today = Carbon::createFromFormat('Y-m-d H:i:s', $contacts->today)->format("Y年m月d日");
+            $back_time = Carbon::createFromFormat('Y-m-d H:i:s', $contacts->back_time)->format("H時i分");
+            return view('contact/read',['contacts' =>$contacts , 'today' =>$today ,'back_time' =>$back_time ]);
 
-        return view('contact/read',['contacts' =>$contacts , 'today' =>$today ,'back_time' =>$back_time ]);
+        } else {
+            $message = '本日分の連絡帳が提出されていません';
+            return view('contact/read', ['message' => $message]);
+        }
+        
     }
 
     // 生徒側から投稿した連絡帳を確認
@@ -92,35 +100,51 @@ class ContactController extends Controller
     {
         $contactsTable = new Contact;
         $contact = $contactsTable->getOneContact();
+        
+        if($contact) {
+            // 日付と時刻を表示したいフォーマットに変換
+            $today = Carbon::createFromFormat('Y-m-d H:i:s', $contact->today)->format("Y年m月d日");
+            $back_time = Carbon::createFromFormat('Y-m-d H:i:s', $contact->back_time)->format("H時i分");
+        } else {
+            $message = '本日分の連絡帳が提出されていません';
+            return view('contact/read', ['message' => $message]);
+        }
 
-        // 日付と時刻を表示したいフォーマットに変換
-        $today = Carbon::createFromFormat('Y-m-d H:i:s', $contact->today)->format('Y/m/d');
-        $back_time = Carbon::createFromFormat('Y-m-d H:i:s', $contact->back_time)->format('H:i');
 
         return view('contact/read',['contact' =>$contact , 'today' =>$today ,'back_time' =>$back_time ]);
     }
 
 
     // 生徒一覧から送られてきたuser_idと同じ連絡帳を取得する
-    // 全て遡って
+    // 1週間遡って
     public function contact_show_all($id)
     {
         $contactsTable = new Contact;
         $contacts_all = $contactsTable->getContacts_all($id);
-        //dd($contacts_all);
 
-        // 日付と時刻を表示したいフォーマットに変換
-        // foreach($contacts_all as $contact) {
-        //     $todayList = Carbon::createFromFormat('Y-m-d H:i:s', $contact->today)->format('Y/m/d');
-        //     $back_timeList = Carbon::createFromFormat('Y-m-d H:i:s', $contact->back_time)->format('H:i');
-        // }
-
-        $todayList = Carbon::createFromFormat('Y-m-d H:i:s', $contacts_all->today)->format('Y/m/d');
-        $back_timeList = Carbon::createFromFormat('Y-m-d H:i:s', $contacts_all->back_time)->format('H:i');
-        dd($todayList);
-        return view('contact/read_all',['contacts_all' =>$contacts_all , 'todayList' =>$todayList ,'back_timeList' =>$back_timeList ]);
+        if($contacts_all) {
+            return view('contact/read_all',['contacts_all' =>$contacts_all ]);
+        } else {
+            $message = '過去の連絡帳がありません';
+            return view('contact/read_all', ['message' => $message]);
+        }
+        
     }
 
+    // 生徒側から投稿した連絡帳を確認
+    // 1週間遡って
+    public function contact_show_before() 
+    {
+        $contactsTable = new Contact;
+        $contact = $contactsTable->getContact_one();
+
+        if($contact) {
+            return view('contact/read_all',['contact' =>$contact ]);
+        } else {
+            $message = '過去の連絡帳がありません';
+            return view('contact/read_all', ['message' => $message]);
+        }
+    }
 
 
 

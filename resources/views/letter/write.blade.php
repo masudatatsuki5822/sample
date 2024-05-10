@@ -78,7 +78,7 @@
 
         <div class='registerBox'>
             <button type="submit" class="add">お便りを投稿する</button>
-            <a href="{{ route ('index')}}">マイページへ戻る</a>
+            <a href="{{ route ('index')}}">保育園マイページへ戻る</a>
         </div>
     </form>
 </div>
