@@ -12,8 +12,12 @@
 @can('nursery')
 <div class='text'>
     <h1>{{ $nursery[0]->name }}</h1>
+@if(isset($message))
+    <p>{{ $message }}</p>
+@else
     <h2>{{ $contacts->name }}さん 連絡帳確認</h2>
 </div>
+
 <div class="letter_box">
     <table class="one_contact">
         <tr>
@@ -55,6 +59,7 @@
         </tr>
         @endif
     </table>
+@endif
     <div class='registerBox'>
         <input class="back "type="button" onclick="window.history.back();" value="クラスの生徒一覧にもどる">
         <a href="{{ route ('index')}}">保育園マイページへ戻る</a>
@@ -63,9 +68,13 @@
 
 @elseif('student')
 <div class="text">
-    <h1>生徒 {{ $studentName[0]->name }}さん</h1> 
-    <h2>連絡帳確認</h2>
+    <h1>生徒 連絡帳確認</h1> 
+    <h2>{{ $studentName[0]->name }}さん</h2>
+@if(isset($message))
+    <p>{{ $message }}</p>
+@else
 </div>
+
 <div class="letter_box">
     <table class="one_contact">
 
@@ -108,8 +117,9 @@
         </tr>
         @endif
     </table>
+@endif
     <div class='registerBox'>
-        <a href="{{ route ('index')}}">生徒マイページへ戻る</a>
+        <a href="{{ route ('index')}}">マイページへ戻る</a>
     </div>
 </div>
 @endif

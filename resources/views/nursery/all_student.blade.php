@@ -12,6 +12,11 @@
 <div class="text">
     <h1>{{ $nursery[0]->name }}</h1>
     <h2>生徒一覧</h2>
+    @if(session('success'))
+    <div class="alert">
+        <p class="session">{{ session('success') }}</p>
+    </div>
+    @endif
 </div>
 
 <table class='all'>
@@ -29,7 +34,6 @@
     </tr>
     @endforeach
 </table>
-
 
 <div class="registerBox">
     <a href="{{ route ('index')}}">保育園マイページへ戻る</a>

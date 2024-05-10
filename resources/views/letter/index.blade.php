@@ -13,7 +13,14 @@
 <div class="text">
     <h1>{{ $nursery[0]->name }}</h1>
     <h2>お便り一覧</h2>
+    @if(session('success'))
+    <div class="alert">
+        <p class="session">{{ session('success') }}</p>
+    </div>
+    @endif
 </div>
+
+
 <div class="letter_box">
     <table class='all'>
         <tr>
@@ -48,7 +55,7 @@
 @elseif('student')
 <div class="text">
     <h1>生徒 お便り一覧</h1>
-    <h2>お便り一覧</h2>
+    <h2>{{ $studentName[0]->name }}さん</h2>
 </div>
 <div class="letter_box">
     <table class='all'>

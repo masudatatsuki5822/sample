@@ -113,3 +113,9 @@ a {
     margin: auto;
     margin-top: 3%;
 }
+.alert {
+    margin: auto;
+}
+.session {
+    color: #ec6666;
+}

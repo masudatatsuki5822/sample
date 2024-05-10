@@ -93,6 +93,7 @@ class User extends Authenticatable
     {
         $users = User::join('nurseries','users.nursery_id','=','nurseries.id')
         ->select('users.id','nurseries.name AS nn','users.name AS un')
+        ->orderBy('users.name')
         ->get();
         
         return $users;
