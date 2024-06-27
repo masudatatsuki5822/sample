@@ -59,6 +59,9 @@
         </tr>
         @endif
     </table>
+    <form method="POST" action="{{ route('confirmed')}}">
+        <button type="submit" id= "checked">確認しました</button>
+    </form>
 @endif
     <div class='registerBox'>
         <input class="back "type="button" onclick="window.history.back();" value="クラスの生徒一覧にもどる">
@@ -125,6 +128,6 @@
 @endif
 
 
-
+<script src="{{ asset('/js/confirmed.js') }}"></script>
 </body>
 </html>

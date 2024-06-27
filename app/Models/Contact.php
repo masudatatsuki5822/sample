@@ -14,6 +14,11 @@ class Contact extends Model
         'person','back_time','temp','breakfast','comment'
     ];
 
+     //リレーションシップの設定
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     // 保育園側の最新の連絡帳閲覧
     public function getContacts($id)

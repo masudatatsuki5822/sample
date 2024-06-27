@@ -56,7 +56,6 @@ Route::group(['middleware' => 'can:student'], function () {
 
 //保育園側
 Route::group(['middleware' => 'can:nursery'], function () {
-
     //クラス一覧画面表示
     Route::get('/class/all',[NurseryController::class,'class_show'])->name('class_show');
     //クラス新規登録画面表示
@@ -88,10 +87,12 @@ Route::group(['middleware' => 'can:nursery'], function () {
     Route::post('/contact/student/select',[ContactController::class,'contact_student_select'])->name('contact_student_select');
     //選択したクラスの生徒を表示
     Route::get('/contact/student',[ContactController::class,'contact_student'])->name('contact_student');
-    // //選択した生徒の連絡帳表示
+    //選択した生徒の連絡帳表示
     Route::get('/contact/show/{id}',[ContactController::class,'contact_show'])->name('contact_show');
     //選択した生徒の連絡帳表示
     Route::get('/contact/show/before/{id}',[ContactController::class,'contact_show_all'])->name('contact_show_all');
+    //確認しましたボタン押下げ時
+    Route::post('/contact/student/',[ContactController::class,'contact_student_select'])->name('contact_student_select');
 });
 
 
