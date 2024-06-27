@@ -32,7 +32,7 @@
 
 @elseif(\Gate::allows('nursery'))
 
-<h1>{{ $nursery[0]->name }} マイページ</h1>
+<h1>{{ $nursery[0]->name }} 保育園</h1>
 
 <div class='mypage'>
     <div class='contents'>

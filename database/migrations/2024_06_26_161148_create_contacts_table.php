@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->timestamp('today');
             $table->double('temp');
-            $table->timestamp('back_time');
+            $table->timestamp('back_time')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('person',255);
             $table->string('breakfast',255);
             $table->string('comment',700);

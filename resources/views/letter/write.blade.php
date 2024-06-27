@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/css/letter_style.css') }}">
-    <title>保育園 お便り投稿</title>
+    <title>保育園 投稿</title>
 </head>
 
 <body>
