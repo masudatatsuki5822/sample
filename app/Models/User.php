@@ -44,6 +44,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    //リレーションシップの設定
+    public function contacts() 
+    {
+        return $this->belongsToMany(Contact::class);
+    }
+
     // ログイン中の保育園の生徒一覧
     public function allStudent() 
     {
